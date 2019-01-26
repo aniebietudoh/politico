@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>  Politico - progress through tranparency</title>
+  <link rel="stylesheet" type="text/css" href="styles/politico.css">
+</head>
+<body>
+
+<nav>
+    <a class="nav-brand nav-brand-admin " href="#"> Politico </a>
+</nav>
+<div class="profile-container">
+  <div class="user-profile-left"> 
+    <div class="profile-image">
+      <img src="images/profileImage.jpg" alt="profile_img"> 
+      <p> Aniebiet Udoh <br> <span> [admin] </span> 
+        <a href="#"><span> logout </span></a>
+      </p>
+    </div>
+
+    <div class="user-profile-nav">
+      <ul>
+        <li><a href="add-party.html"> 
+          <span><i class="fas fa-plus-square"></i> Add new political party </span></a>
+        </li>
+        <li><a href="view-parties.html"> 
+          <span><i class="far fa-eye"></i> View all political party </span> </a>
+        </li>
+         <li><a href="add-office.html"> 
+          <span><i class="fas fa-plus-square"></i> Add new political office </span></a>
+        </li>
+        <li><a href="#"> 
+          <span><i class="far fa-eye"></i> View all office office </span> </a>
+        </li>
+        <li><a href="politicians-for-office.html"> 
+          <span><i class="far fa-eye"></i> Contestants per office </span> </a>
+        </li>
+        <li><a href="contest.html"> 
+          <span><i class="fas fa-person-booth"></i> Run for political office </span> </a>
+        </li>
+
+      </ul>
+      
+    </div>
+
+  </div>
+  <div class="user-profile-right">
+    <h3> Add a New Political Party</h3>
+    <form class="ui-form modal-content modal-content-dashboard" method="post">
+    <p>
+      <label>Party name</label>
+      <input type="text" name="first_name" placeholder="Enter political party name">
+    </p>
+    <p>
+      <label>Party address</label><br>
+      <input type="text" name="last_name" placeholder="Enter political party address">
+    </p>
+    <p>
+      <label>Email</label><br>
+      <input type="email" name="email" required placeholder="Enter political party email">
+    </p>
+    <p>
+      <label>Party logo</label><br>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+    </p>
+    <br>
+    <p>
+      <button class="button-normal button-small"> Add party </button>
+    </p>
+
+  </form>
+  </div>
+</div>
+
+  <script type="text/javascript" src="scripts/modal.js"></script>
+</body>
+</html>
