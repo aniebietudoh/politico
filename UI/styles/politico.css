@@ -2,7 +2,7 @@
     by @ekikoh. */
 
 /* Import fonts and icons */
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:600|Source+Sans+Pro:300');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:600|Source+Sans+Pro:300,400');
 @import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css');
 
 /* Predefined variables */
@@ -49,6 +49,7 @@ h1,h2,h3,h4,h5,h6 {
   width: 55%;
   font-size: 1.7em;
   font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
   padding: 10px;
   color: #ada7a7;
 }
@@ -69,6 +70,7 @@ nav {
   border-bottom: 1px solid #eee;
   font-family: 'IBM Plex Sans', sans-serif;
   border-top: 3px solid var(--main-text-color);
+  font-weight: 300;
 }
 
 nav,
@@ -108,6 +110,16 @@ span{
   padding: 6px 20px;
 }
 
+.button-center {
+  margin: 0px auto;
+  text-align: center;
+  width: 100%;
+}
+.button-vote {
+  font-size: 15px;
+  padding: 6px 20px;
+  border-radius: 5px;
+}
 /* styles for card */
 .card-container {
   width: 70%;
@@ -169,6 +181,7 @@ span{
   border: 1px solid #ddd;
   color: rgba(0, 0, 0, 0.6);
 }
+
 select {
   width: 100%;
 }
@@ -203,6 +216,7 @@ select {
   animation-duration: 1s;
   background: hsla(0,0%,100%,.9);
 }
+
 .modal-content-dashboard {
   width: 90%; 
   border:0px;
@@ -214,12 +228,14 @@ select {
   padding: 15px;
   background: rgb(47, 174, 185);
   color: #ffffff;
+  text-align: center;
+  border-radius: 4px;
 }
 
 .close {
   color: #fff;
   float: right;
-  font-size: 45px;
+  font-size: 25px;
   font-weight: bold;
 }
 
@@ -302,7 +318,7 @@ select {
   margin-top: 20px;
   font-family: 'Source Sans Pro', sans-serif;
   text-transform: capitalize;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .user-profile-nav li {
@@ -320,23 +336,115 @@ select {
   color: rgb(153, 153, 153);
 }
 
-table {
-  font-family: 'Source Sans Pro', sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
 }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+.grid > span {
+    padding: 8px 4px;
+    margin-top: 2px;
+    padding: 10px;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
+.grid .col-style {
+  background: #f0ecec;
 }
-footer {
-  font:14px 'Source Sans Pro', sans-serif;
-  text-align: center;
-  color: #333;
+.grid .col-style-middle {
+  background: #f8f8f8;
 }
+
+/* Styles for responsiveness */
+
+@media (max-width: 640px){
+    .full-screen {
+      height: 100vh;
+      background: #F8FAFA;
+    } 
+
+    .hero-text-box p {
+      width: 95%;
+      padding: 10px;
+      margin: 0px auto;
+      font-size: 1.2em;
+      text-align: center;
+    }
+    .hero-text-box h2{
+      font-size: 4em;
+    }
+
+    .button-normal {
+      font-size: 20px;
+      padding: 6px 20px;
+      margin-bottom: 5px;
+    }
+
+    .user-profile-left {
+      width:90%;
+    }
+
+    .user-profile-right {
+      width:90%;
+      margin-left: 0px;
+      margin-top: 10px;
+    }
+    .user-profile-left,
+    .user-profile-right {
+      float: left;
+      padding:1px;
+      box-sizing: border-box;
+    }
+    .profile-container {
+      padding: 0rem;
+    }
+}
+ 
+@media (max-width: 768px){
+    .full-screen {
+      height: 100vh;
+      background: #F8FAFA;
+    } 
+
+    .hero-text-box p {
+      width: 95%;
+      padding: 10px;
+      margin: 0px auto;
+      font-size: 1.2em;
+      text-align: center;
+    }
+    .hero-text-box h2{
+      font-size: 4em;
+    }
+
+    .button-normal {
+      font-size: 20px;
+      padding: 6px 20px;
+      margin-bottom: 5px;
+    }
+
+    .user-profile-left {
+      width:90%;
+    }
+
+    .user-profile-right {
+      width:90%;
+      margin-left: 0px;
+      margin-top: 10px;
+    }
+    .user-profile-left,
+    .user-profile-right {
+      float: left;
+      padding:1px;
+      box-sizing: border-box;
+    }
+    .profile-container {
+      padding: 0rem;
+    }
+
+}
+/* 
+@media (min-width: 1024px){}
+ 
+@media (min-width: 1200px){}*/
