@@ -18,6 +18,8 @@
   margin: 0 0px;
   padding: 0 0px;
   list-style: none;
+  animation-name: topAnimate;
+  animation-duration: 1s;
 }
 
 a {
