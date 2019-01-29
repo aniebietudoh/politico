@@ -1,0 +1,26 @@
+{
+  "name": "politico_ds_api",
+  "version": "1.0.0",
+  "description": "An api developed for the politico app using a data structure as storage medium",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+  },
+  "keywords": [
+    "api",
+    "data-structure"
+  ],
+  "author": "ekikoh",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.2",
+    "eslint": "^5.12.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
+  }
+}
