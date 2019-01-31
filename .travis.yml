@@ -15,7 +15,6 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-  - nyc --reporter=lcov npm run test
   - npm run test
   - npm run coverage
 
