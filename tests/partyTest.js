@@ -4,6 +4,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../server';
 import uuid from 'uuid';
+
 // Configure chai
 chai.use(chaiHttp);
 chai.should();

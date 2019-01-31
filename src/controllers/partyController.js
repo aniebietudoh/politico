@@ -1,7 +1,6 @@
 import PartyModel from '../models/partyModel';
 
 const Party = {
-
   createParty(req, res) {
     if (!req.body.partyName && !req.body.partyAddress) {
       return res.status(400).send({ message: 'party name and address fields are required' });
