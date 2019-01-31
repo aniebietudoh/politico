@@ -4,7 +4,7 @@
   "description": "An api for politico using a dummy db",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha --require babel-register tests/*.js --exit",
+    "test": "nyc --require babel-register mocha  tests/*.js --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "build": "babel server.js --out-dir build",
     "ds": "babel-watch server.js",
