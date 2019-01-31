@@ -12,6 +12,13 @@ const Office = {
     const offices = OfficeModel.findAll();
     return res.status(200).send(offices);
   },
+  getOneOffice(req, res) {
+    const office = OfficeModel.findOne(req.params.id);
+    if (!office) {
+      return res.status(404).send({ message: 'Office not found' });
+    }
+    return res.status(200).send(office);
+  },
 };
 
 export default Office;
