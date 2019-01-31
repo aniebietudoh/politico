@@ -43,7 +43,7 @@ describe("Office", () => {
          });
 
       //test to GET a specific office record
- /*     it("should get specific office record", (done) => {
+  /*    it("should get specific office record", (done) => {
         const officeData = {
           id: uuid.v4(),
           officeName: "Chairman",
@@ -57,6 +57,6 @@ describe("Office", () => {
                      res.body.should.be.a('object');
                      done();
                   });
-         });*/
+         }); */
   });
 });

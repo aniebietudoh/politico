@@ -22,7 +22,7 @@ describe("Party", () => {
                   });
          });
         // Test to get single party record
-        it("should get a single party record", (done) => {
+     /*   it("should get a single party record", (done) => {
         	let newParty = ({
         		id: uuid.v4(),
       			partyName: 'APC',
@@ -36,17 +36,7 @@ describe("Party", () => {
                      res.body.should.be.a('object');
                      done();
                   });
-         });
-
-        // Test to not get single party record
-    /*    it("should not get a single party record", (done) => {
-             const id = 5;
-             chai.request(app)
-                 .get(`/${id}`)
-                 .end((err, res) => {
-                     res.should.have.status(404);
-                     done();
-                  });
          });*/
+
     });
 });
