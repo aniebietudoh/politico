@@ -19,6 +19,10 @@ class Office {
     return this.offices;
   }
 
+  findOne(id) {
+    return this.offices.find(item => item.id === id);
+  }
+
 }
 
 export default new Office();
