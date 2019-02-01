@@ -14,6 +14,6 @@ exports.default = function (app) {
   app.post('/api/v1/parties', _partyController2.default.createParty);
   app.get('/api/v1/parties', _partyController2.default.getAllParty);
   app.get('/api/v1/parties/:id', _partyController2.default.getOneParty);
-  app.put('/api/v1/parties/:id', _partyController2.default.updateParty);
+  app.patch('/api/v1/parties/:id', _partyController2.default.updateParty);
   app.delete('/api/v1/parties/:id', _partyController2.default.deleteParty);
 };

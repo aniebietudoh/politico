@@ -12,8 +12,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Party = {
   createParty: function createParty(req, res) {
-    if (!req.body.partyName && !req.body.partyAddress) {
-      return res.status(400).send({ message: 'party name and address fields are required' });
+    if (!req.body.partyName && !req.body.partyAddress && !req.body) {
+      return res.status(400).send({ error: 'party name and address fields are required' });
     }
     var party = _partyModel2.default.create(req.body);
     return res.status(201).send({
