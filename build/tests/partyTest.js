@@ -30,27 +30,27 @@ describe("Party", function () {
     describe("GET /api/v1/parties", function () {
         // Test to get all party record
         it("should get all party record", function (done) {
-            _chai2.default.request(_server2.default).get('/api/v1/parties').send({ 'partyName': 'PDP', 'partyAddress': 'Lagos', 'partyLogo': 'http://logo.com' }).end(function (err, res) {
+            _chai2.default.request(_server2.default).get('/api/v1/parties').send({
+                'partyName': 'PDP',
+                'partyAddress': 'Lagos',
+                'partyLogo': 'http://logo.com'
+            }).end(function (err, res) {
                 res.should.have.status(200);
-                res.body.should.be.a('array');
+                res.body.should.be.a('object');
                 done();
             });
         });
-        // Test to get single party record
-        /*   it("should get a single party record", (done) => {
-           	let newParty = ({
-           		id: uuid.v4(),
-         			partyName: 'APC',
-         			partyAddress: 'Lagos',
-         			partyLogo: 'http://logo.com'
-         		});
-                chai.request(app)
-                    .get('/api/v1/parties/'+newParty.id)
-                    .end((err, res) => {
-                        res.should.have.status(200);
-                        res.body.should.be.a('object');
-                        done();
-                     });
-            });*/
+        // Test to POST new party record
+        it("should post new party record", function (done) {
+            _chai2.default.request(_server2.default).post('/api/v1/parties').send({
+                'partyName': 'PDP',
+                'partyAddress': 'Lagos',
+                'partyLogo': 'http://logo.com'
+            }).end(function (err, res) {
+                res.should.have.status(201);
+                res.body.should.be.a('object');
+                done();
+            });
+        });
     });
 });

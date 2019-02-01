@@ -49,7 +49,7 @@ describe("Office", function () {
       };
       _chai2.default.request(_server2.default).get('/api/v1/offices').send(officeData).end(function (err, res) {
         res.should.have.status(200);
-        res.body.should.be.a('array');
+        res.body.should.be.a('object');
         done();
       });
     });
