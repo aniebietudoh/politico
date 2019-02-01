@@ -2,13 +2,14 @@
   "name": "dummy_db_api",
   "version": "1.0.0",
   "description": "An api for politico using a dummy db",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "nyc --require babel-register mocha  tests/*.js --exit",
+    "test": "nyc --require babel-register mocha  api/tests/*.js --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "build": "babel server.js --out-dir build",
-    "ds": "babel-watch server.js",
-    "lint": "eslint"
+    "build": "babel api -d build",
+    "ds": "babel-watch api/server.js",
+    "lint": "eslint",
+    "start": "npm run build && node build/server.js"
   },
   "repository": {
     "type": "git",
