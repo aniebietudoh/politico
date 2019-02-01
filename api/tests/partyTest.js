@@ -14,29 +14,32 @@ describe("Party", () => {
         it("should get all party record", (done) => {
              chai.request(app)
                  .get('/api/v1/parties')
-                 .send({'partyName': 'PDP', 'partyAddress': 'Lagos', 'partyLogo': 'http://logo.com'})
-                 .end((err, res) => {
-                     res.should.have.status(200);
-                     res.body.should.be.a('array');
-                     done();
-                  });
-         });
-        // Test to get single party record
-     /*   it("should get a single party record", (done) => {
-        	let newParty = ({
-        		id: uuid.v4(),
-      			partyName: 'APC',
-      			partyAddress: 'Lagos',
-      			partyLogo: 'http://logo.com'
-      		});
-             chai.request(app)
-                 .get('/api/v1/parties/'+newParty.id)
+                 .send({
+                  'partyName': 'PDP',
+                  'partyAddress': 'Lagos',
+                  'partyLogo': 'http://logo.com'
+                })
                  .end((err, res) => {
                      res.should.have.status(200);
                      res.body.should.be.a('object');
                      done();
                   });
-         });*/
+         });
+        // Test to POST new party record
+    it("should post new party record", (done) => {
+       chai.request(app)
+          .post('/api/v1/parties')
+          .send({
+            'partyName': 'PDP',
+            'partyAddress': 'Lagos',
+            'partyLogo': 'http://logo.com'
+          })
+         .end((err, res) => {
+           res.should.have.status(201);
+           res.body.should.be.a('object');
+           done();
+          });
+     });
 
     });
 });

@@ -16,7 +16,10 @@ var Party = {
       return res.status(400).send({ message: 'party name and address fields are required' });
     }
     var party = _partyModel2.default.create(req.body);
-    return res.status(201).send(party);
+    return res.status(201).send({
+      "status": res.status,
+      "data": [{ party: party }]
+    });
   },
   getAllParty: function getAllParty(req, res) {
     var parties = _partyModel2.default.findAll();

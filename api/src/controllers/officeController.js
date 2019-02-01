@@ -6,18 +6,27 @@ const Office = {
       return res.status(400).send({ message: 'Office name and type fields are required' });
     }
     const office = OfficeModel.create(req.body);
-    return res.status(201).send(office);
+    return res.status(201).send({
+      "status": 201,
+      "data": [office]
+    });
   },
   getAllOffice(req, res) {
     const offices = OfficeModel.findAll();
-    return res.status(200).send(offices);
+    return res.status(200).send({
+      "status": 200,
+      "data": [offices]
+    });
   },
   getOneOffice(req, res) {
     const office = OfficeModel.findOne(req.params.id);
     if (!office) {
       return res.status(404).send({ message: 'Office not found' });
     }
-    return res.status(200).send(office);
+    return res.status(200).send({
+      "status": 200,
+      "data": [office]
+    });
   },
 };
 
