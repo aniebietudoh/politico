@@ -9,7 +9,7 @@
     "build": "babel api -d build",
     "ds": "babel-watch api/server.js",
     "lint": "eslint",
-    "start": "npm run build && node build/server.js"
+    "start": "node build/server.js"
   },
   "repository": {
     "type": "git",
