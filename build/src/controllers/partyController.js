@@ -12,20 +12,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Party = {
   createParty: function createParty(req, res) {
-    if (!req.body.partyName && !req.body.partyAddress && !req.body) {
+    if (!req.body.partyName || !req.body.partyAddress || !req.body) {
       return res.status(400).send({ error: 'party name and address fields are required' });
     }
     var party = _partyModel2.default.create(req.body);
     return res.status(201).send({
       "status": 201,
-      "data": [party]
+      "data": party
     });
   },
   getAllParty: function getAllParty(req, res) {
     var parties = _partyModel2.default.findAll();
     return res.status(200).send({
       "status": 200,
-      "data": [parties]
+      "data": parties
     });
   },
   getOneParty: function getOneParty(req, res) {
@@ -35,7 +35,7 @@ var Party = {
     }
     return res.status(200).send({
       "status": 200,
-      "data": [party]
+      "data": party
     });
   },
   updateParty: function updateParty(req, res) {
@@ -46,7 +46,7 @@ var Party = {
     var updatedParty = _partyModel2.default.update(req.params.id, req.body);
     return res.status(201).send({
       "status": 201,
-      "data": [updatedParty]
+      "data": updatedParty
     });
   },
   deleteParty: function deleteParty(req, res) {
@@ -57,7 +57,7 @@ var Party = {
     var partyD = _partyModel2.default.delete(req.params.id);
     return res.status(204).send({
       "status": 204,
-      "data": [partyD]
+      "data": partyD
     });
   }
 };
