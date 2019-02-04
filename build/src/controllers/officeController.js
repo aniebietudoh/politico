@@ -12,7 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Office = {
   createOffice: function createOffice(req, res) {
-    if (!req.body.officeName && !req.body.officeType && !req.body) {
+    if (!req.body.officeName || !req.body.officeType || !req.body) {
       return res.status(400).send({ error: 'Office name and type fields are required' });
     }
     var office = _officeModel2.default.create(req.body);

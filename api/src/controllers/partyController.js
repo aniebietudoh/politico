@@ -2,13 +2,13 @@ import PartyModel from '../models/partyModel';
 
 const Party = {
   createParty(req, res) {
-    if (!req.body.partyName && !req.body.partyAddress && !req.body) {
+    if (!req.body.partyName || !req.body.partyAddress || !req.body) {
       return res.status(400).send({ error: 'party name and address fields are required' });
     }
     const party = PartyModel.create(req.body);
     return res.status(201).send({
       "status": 201,
-      "data": [party]
+      "data": party
     });
   },
 
@@ -18,7 +18,7 @@ const Party = {
     const parties = PartyModel.findAll();
     return res.status(200).send({
       "status": 200,
-      "data": [parties]
+      "data": parties
     });
   },
 
@@ -29,7 +29,7 @@ const Party = {
     }
     return res.status(200).send({
       "status": 200,
-      "data": [party]
+      "data": party
     });
   },
 
@@ -41,7 +41,7 @@ const Party = {
     const updatedParty = PartyModel.update(req.params.id, req.body);
     return res.status(201).send({
       "status": 201,
-      "data": [updatedParty]
+      "data": updatedParty
     });
   },
 
@@ -53,7 +53,7 @@ const Party = {
     const partyD = PartyModel.delete(req.params.id);
     return res.status(204).send({
       "status": 204,
-      "data": [partyD]
+      "data": partyD
     });
   },
 };
