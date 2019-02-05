@@ -17,15 +17,15 @@ var Party = {
     }
     var party = _partyModel2.default.create(req.body);
     return res.status(201).send({
-      "status": 201,
-      "data": party
+      status: 201,
+      data: party
     });
   },
   getAllParty: function getAllParty(req, res) {
     var parties = _partyModel2.default.findAll();
     return res.status(200).send({
-      "status": 200,
-      "data": parties
+      status: 200,
+      data: parties
     });
   },
   getOneParty: function getOneParty(req, res) {
@@ -34,8 +34,8 @@ var Party = {
       return res.status(404).send({ message: 'Party not found' });
     }
     return res.status(200).send({
-      "status": 200,
-      "data": party
+      status: 200,
+      data: party
     });
   },
   updateParty: function updateParty(req, res) {
@@ -45,8 +45,8 @@ var Party = {
     }
     var updatedParty = _partyModel2.default.update(req.params.id, req.body);
     return res.status(201).send({
-      "status": 201,
-      "data": updatedParty
+      status: 201,
+      data: updatedParty
     });
   },
   deleteParty: function deleteParty(req, res) {
@@ -56,8 +56,8 @@ var Party = {
     }
     var partyD = _partyModel2.default.delete(req.params.id);
     return res.status(204).send({
-      "status": 204,
-      "data": partyD
+      status: 204,
+      data: partyD
     });
   }
 };

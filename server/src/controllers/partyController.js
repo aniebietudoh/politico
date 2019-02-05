@@ -7,16 +7,16 @@ const Party = {
     }
     const party = PartyModel.create(req.body);
     return res.status(201).send({
-      "status": 201,
-      "data": party
+      status: 201,
+      data: party,
     });
   },
 
   getAllParty(req, res) {
     const parties = PartyModel.findAll();
     return res.status(200).send({
-      "status": 200,
-      "data": parties
+      status: 200,
+      data: parties,
     });
   },
 
@@ -26,8 +26,8 @@ const Party = {
       return res.status(404).send({ message: 'Party not found' });
     }
     return res.status(200).send({
-      "status": 200,
-      "data": party
+      status: 200,
+      data: party,
     });
   },
 
@@ -38,8 +38,8 @@ const Party = {
     }
     const updatedParty = PartyModel.update(req.params.id, req.body);
     return res.status(201).send({
-      "status": 201,
-      "data": updatedParty
+      status: 201,
+      data: updatedParty,
     });
   },
 
@@ -50,8 +50,8 @@ const Party = {
     }
     const partyD = PartyModel.delete(req.params.id);
     return res.status(204).send({
-      "status": 204,
-      "data": partyD
+      status: 204,
+      data: partyD,
     });
   },
 };
