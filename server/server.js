@@ -13,7 +13,8 @@ app.get('/', (req, res) => res.status(200).send({ message: 'Welcome to politico 
 
 
 app.post('/api/v1/parties', Party.createParty);
-/*app.get('/api/v1/parties', Party.getAllParty);
+app.get('/api/v1/parties', Party.getAllParty);
+/*
 app.get('/api/v1/parties/:id', Party.getOneParty);
 app.patch('/api/v1/parties/:id', Party.updateParty);
 app.delete('/api/v1/parties/:id', Party.deleteParty);
