@@ -12,8 +12,6 @@ const Party = {
     });
   },
 
-
-
   getAllParty(req, res) {
     const parties = PartyModel.findAll();
     return res.status(200).send({
