@@ -17,15 +17,15 @@ var Office = {
     }
     var office = _officeModel2.default.create(req.body);
     return res.status(201).send({
-      "status": 201,
-      "data": office
+      status: 201,
+      data: office
     });
   },
   getAllOffice: function getAllOffice(req, res) {
     var offices = _officeModel2.default.findAll();
     return res.status(200).send({
-      "status": 200,
-      "data": offices
+      status: 200,
+      data: offices
     });
   },
   getOneOffice: function getOneOffice(req, res) {
@@ -34,8 +34,8 @@ var Office = {
       return res.status(404).send({ message: 'Office not found' });
     }
     return res.status(200).send({
-      "status": 200,
-      "data": office
+      status: 200,
+      data: office
     });
   }
 };

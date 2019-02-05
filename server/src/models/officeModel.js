@@ -22,7 +22,6 @@ class Office {
   findOne(id) {
     return this.offices.find(item => item.id === id);
   }
-
 }
 
 export default new Office();
