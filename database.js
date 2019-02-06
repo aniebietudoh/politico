@@ -25,6 +25,18 @@ const createTables = () => {
         id UUID PRIMARY KEY,
         name VARCHAR(128) NOT NULL,
         type VARCHAR(128) NOT NULL
+      );
+      CREATE TABLE IF NOT EXISTS
+      users(
+        id UUID PRIMARY KEY,
+        firstname VARCHAR(128) NOT NULL,
+        lastname VARCHAR(128) NOT NULL,
+        othername VARCHAR(128) NOT NULL,
+        email VARCHAR(128) UNIQUE NOT NULL,
+        phoneNumber VARCHAR(128) NOT NULL,
+        passportUrl VARCHAR(128) NOT NULL,
+        isAdmin BOOLEAN NOT NULL,
+        password VARCHAR(128) NOT NULL
       )`;
 
   pool.query(queryText)
@@ -39,7 +51,7 @@ const createTables = () => {
 }
 
 const dropTables = () => {
-  const queryText = 'DROP TABLE IF EXISTS parties, offices';
+  const queryText = 'DROP TABLE IF EXISTS parties, offices, users';
   pool.query(queryText)
     .then((res) => {
       console.log(res);
