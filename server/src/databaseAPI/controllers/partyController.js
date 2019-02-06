@@ -37,7 +37,7 @@ const Party = {
     }
   },
   async getOneParty(req, res) {
-    const text = 'SELECT * FROM partiess WHERE id = $1';
+    const text = 'SELECT * FROM parties WHERE id = $1';
     try {
       const { rows } = await db.query(text, [req.params.id]);
       if (!rows[0]) {
