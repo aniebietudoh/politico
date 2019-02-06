@@ -10,8 +10,8 @@ const Party = {
     const values = [
       uuidv4(),
       req.body.name,
-      req.body.address,
-      req.body.logo,
+      req.body.hqAddress,
+      req.body.logoUrl,
     ];
 
     try {
@@ -77,9 +77,12 @@ const Party = {
     try {
       const { rows } = await db.query(deleteQuery, [req.params.id]);
       if(!rows[0]) {
-        return res.status(404).send({'message': 'party not found'});
+        return res.status(404).send({status: 404, 'error': 'Party not found'});
       }
-      return res.status(204).send({ 'message': 'deleted' });
+      return res.status(204).send({
+        status: 204,
+        "message": "Deleted"
+      });
     } catch(error) {
       return res.status(400).send(error);
     }
