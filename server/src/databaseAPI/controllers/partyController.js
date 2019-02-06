@@ -41,26 +41,29 @@ const Party = {
     try {
       const { rows } = await db.query(text, [req.params.id]);
       if (!rows[0]) {
-        return res.status(404).send({'message': 'party not found'});
+        return res.status(404).send({status: 404, 'error': 'party not found'});
       }
-      return res.status(200).send(rows[0]);
+      return res.status(200).send({
+        status: 200,
+        data: [rows[0]]
+      });
     } catch(error) {
-      return res.status(400).send(error)
+      return res.status(400).send({status: 400, "error": error})
     }
   },
   async updateParty(req, res) {
     const findOneQuery = 'SELECT * FROM parties WHERE id=$1';
     const updateOneQuery =`UPDATE parties
-      SET party_name=$1,party_address=$2,party_logo=$3 returning *`;
+      SET name=$1,address=$2,logo=$3 returning *`;
     try {
       const { rows } = await db.query(findOneQuery, [req.params.id]);
       if(!rows[0]) {
         return res.status(404).send({'message': 'party not found'});
       }
       const values = [
-        req.body.partyName || rows[0].party_name,
-        req.body.partyAddress || rows[0].party_address,
-        req.body.partyLogo || rows[0].party_logo,
+        req.body.name || rows[0].name,
+        req.body.address || rows[0].address,
+        req.body.logo || rows[0].logo,
         req.params.id
       ];
       const response = await db.query(updateOneQuery, values);
@@ -69,6 +72,18 @@ const Party = {
       return res.status(400).send(err);
     }
   },
+    async deleteParty(req, res) {
+    const deleteQuery = 'DELETE FROM parties WHERE id=$1 returning *';
+    try {
+      const { rows } = await db.query(deleteQuery, [req.params.id]);
+      if(!rows[0]) {
+        return res.status(404).send({'message': 'party not found'});
+      }
+      return res.status(204).send({ 'message': 'deleted' });
+    } catch(error) {
+      return res.status(400).send(error);
+    }
+  }
 }
 
 export default Party;
