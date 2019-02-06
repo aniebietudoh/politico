@@ -16,9 +16,9 @@ const createTables = () => {
     `CREATE TABLE IF NOT EXISTS
       parties(
         id UUID PRIMARY KEY,
-        party_name VARCHAR(128) NOT NULL,
-        party_address VARCHAR(128) NOT NULL,
-        party_logo VARCHAR(128) NOT NULL
+        name VARCHAR(128) NOT NULL,
+        address VARCHAR(128) NOT NULL,
+        logo VARCHAR(128) NOT NULL
       )`;
 
   pool.query(queryText)
