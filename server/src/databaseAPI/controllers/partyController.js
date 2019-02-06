@@ -42,6 +42,27 @@ const Party = {
       return res.status(400).send(error)
     }
   },
+  async updateParty(req, res) {
+    const findOneQuery = 'SELECT * FROM parties WHERE id=$1';
+    const updateOneQuery =`UPDATE parties
+      SET party_name=$1,party_address=$2,party_logo=$3 returning *`;
+    try {
+      const { rows } = await db.query(findOneQuery, [req.params.id]);
+      if(!rows[0]) {
+        return res.status(404).send({'message': 'party not found'});
+      }
+      const values = [
+        req.body.partyName || rows[0].party_name,
+        req.body.partyAddress || rows[0].party_address,
+        req.body.partyLogo || rows[0].party_logo,
+        req.params.id
+      ];
+      const response = await db.query(updateOneQuery, values);
+      return res.status(200).send(response.rows[0]);
+    } catch(err) {
+      return res.status(400).send(err);
+    }
+  },
 }
 
 export default Party;
