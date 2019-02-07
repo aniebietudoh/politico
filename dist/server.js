@@ -28,6 +28,7 @@ var _userRoute2 = _interopRequireDefault(_userRoute);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var port = process.env.PORT || 8000;
 _dotenv2.default.config();
 var app = (0, _express2.default)();
 
@@ -36,7 +37,7 @@ app.get('/', function (req, res) {
   return res.status(200).send({ message: 'Welcome to politico API' });
 });
 
-app.listen(3000);
+app.listen(port);
 console.log('app running on port ', 3000);
 
 (0, _partyRoute2.default)(app);
