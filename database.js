@@ -27,7 +27,7 @@ const createTables = () => {
         type VARCHAR(128) NOT NULL
       );
       CREATE TABLE IF NOT EXISTS
-      users(
+        users(
         id UUID PRIMARY KEY,
         firstname VARCHAR(128) NOT NULL,
         lastname VARCHAR(128) NOT NULL,

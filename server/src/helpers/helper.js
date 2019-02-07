@@ -19,7 +19,7 @@ const Helper = {
       userId: id,
       role: isAdmin
     },
-      process.env.SECRET, { expiresIn: '10d' }
+      process.env.SECRET, { expiresIn: '1d' }
     );
     return token;
   }

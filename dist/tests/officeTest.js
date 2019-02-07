@@ -16,7 +16,7 @@ var _server = require('../server');
 
 var _server2 = _interopRequireDefault(_server);
 
-var _partyModel = require('../src/models/partyModel');
+var _partyModel = require('../src/objectsAPI/models/partyModel');
 
 var _partyModel2 = _interopRequireDefault(_partyModel);
 
