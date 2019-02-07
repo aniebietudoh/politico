@@ -6,7 +6,7 @@
   "scripts": {
     "test": "nyc --require babel-register mocha  server/tests/*.js --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "build": "babel server --out-dir dist",
+    "build": "babel database.js server --out-dir dist",
     "dev-start": "node database.js createTables && babel-watch server/server.js",
     "lint": "eslint . --ext .js --fix",
     "start": "node dist/server.js"
