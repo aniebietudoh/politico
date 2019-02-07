@@ -28,7 +28,7 @@ var _userRoute2 = _interopRequireDefault(_userRoute);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 3000;
 _dotenv2.default.config();
 var app = (0, _express2.default)();
 

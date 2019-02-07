@@ -64,7 +64,7 @@ var User = {
               _ref2 = _context.sent;
               rows = _ref2.rows;
               token = _helper2.default.generateToken(rows[0].id);
-              return _context.abrupt('return', res.status(201).header('x-auth-header', token).send({
+              return _context.abrupt('return', res.status(201).send({
                 status: 201,
                 data: [{ "token": token, "user": rows[0] }] }));
 
