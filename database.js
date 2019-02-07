@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
+  connectionString: postgres://mdjqexpo:j2M9P5HeqNtiv7PXS4vjwHtX-el33dsj@baasu.db.elephantsql.com:5432/mdjqexpo
 });
 
 pool.on('connect', () => {
