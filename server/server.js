@@ -6,7 +6,7 @@ import officeRoutes from './src/routes/officeRoute';
 import userRoutes from './src/routes/userRoute';
 
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 dotenv.config();
 const app = express()
 

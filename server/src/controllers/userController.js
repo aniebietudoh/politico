@@ -34,7 +34,7 @@ const User = {
     try {
       const { rows } = await db.query(createQuery, values);
       const token = Helper.generateToken(rows[0].id);
-      return res.status(201).header('x-auth-header', token).send({ 
+      return res.status(201).send({ 
       	status: 201, 
         data: [{ "token": token, "user": rows[0] }] });
     } catch(error) {
