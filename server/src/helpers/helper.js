@@ -14,6 +14,17 @@ const Helper = {
     return /\S+@\S+\.\S+/.test(email);
   },
 
+  trimString(string) {
+    return string.replace(/\s+/g, '');
+  },
+
+  makeInteger(arg) {
+    if (parseInt(arg) !== NaN) {
+      return arg;
+    }
+    return false;
+  },
+
   generateToken(id, isAdmin) {
     const token = jwt.sign({
       userId: id,

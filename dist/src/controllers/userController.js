@@ -29,12 +29,12 @@ var User = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              if (!(!req.body.email || !req.body.password)) {
+              if (!(!req.body.firstname || !req.body.email || !req.body.password)) {
                 _context.next = 2;
                 break;
               }
 
-              return _context.abrupt('return', res.status(400).send({ 'message': 'Some values are missing' }));
+              return _context.abrupt('return', res.status(400).send({ status: 400, 'Error': 'Name or email is missing' }));
 
             case 2:
               if (_helper2.default.isValidEmail(req.body.email)) {
@@ -42,43 +42,52 @@ var User = {
                 break;
               }
 
-              return _context.abrupt('return', res.status(400).send({ 'message': 'Please enter a valid email address' }));
+              return _context.abrupt('return', res.status(400).send({ status: 400, 'Error': 'Please enter a valid email address' }));
 
             case 4:
+              if (!(isNaN(req.body.phoneNumber) || req.body.phoneNumber.length < 8)) {
+                _context.next = 6;
+                break;
+              }
+
+              return _context.abrupt('return', res.status(400).send({ status: 400, 'Error': 'Please enter a valid phone number' }));
+
+            case 6:
               hashPassword = _helper2.default.hashPassword(req.body.password);
               createQuery = 'INSERT INTO\n      users(id, firstname, lastname, othername, email, phoneNumber, passportUrl, isAdmin, password)\n      VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)\n      returning *';
-              values = [(0, _v2.default)(), req.body.firstname, req.body.lastname, req.body.othername, req.body.email, req.body.phoneNumber, req.body.passportUrl, false, hashPassword];
-              _context.prev = 7;
-              _context.next = 10;
+              values = [(0, _v2.default)(), _helper2.default.trimString(req.body.firstname), _helper2.default.trimString(req.body.lastname), _helper2.default.trimString(req.body.othername), req.body.email, _helper2.default.makeInteger(req.body.phoneNumber), req.body.passportUrl, false, hashPassword];
+              _context.prev = 9;
+              _context.next = 12;
               return _query2.default.query(createQuery, values);
 
-            case 10:
+            case 12:
               _ref2 = _context.sent;
               rows = _ref2.rows;
               token = _helper2.default.generateToken(rows[0].id);
               return _context.abrupt('return', res.status(201).header('x-auth-header', token).send({
-                status: 200, data: [{ "token": token, "user": rows[0] }] }));
+                status: 201,
+                data: [{ "token": token, "user": rows[0] }] }));
 
-            case 16:
-              _context.prev = 16;
-              _context.t0 = _context['catch'](7);
+            case 18:
+              _context.prev = 18;
+              _context.t0 = _context['catch'](9);
 
               if (!(_context.t0.routine === '_bt_check_unique')) {
-                _context.next = 20;
+                _context.next = 22;
                 break;
               }
 
-              return _context.abrupt('return', res.status(400).send({ 'message': 'User with that EMAIL already exist' }));
+              return _context.abrupt('return', res.status(400).send({ status: 400, 'error': 'User with that EMAIL already exist' }));
 
-            case 20:
+            case 22:
               return _context.abrupt('return', res.status(400).send(_context.t0));
 
-            case 21:
+            case 23:
             case 'end':
               return _context.stop();
           }
         }
-      }, _callee, this, [[7, 16]]);
+      }, _callee, this, [[9, 18]]);
     }));
 
     function create(_x, _x2) {
@@ -100,7 +109,7 @@ var User = {
                 break;
               }
 
-              return _context2.abrupt('return', res.status(400).send({ 'message': 'Some values are missing' }));
+              return _context2.abrupt('return', res.status(400).send({ status: 400, 'error': 'Name or email is missing' }));
 
             case 2:
               if (_helper2.default.isValidEmail(req.body.email)) {
@@ -108,7 +117,7 @@ var User = {
                 break;
               }
 
-              return _context2.abrupt('return', res.status(400).send({ 'message': 'Please enter a valid email address' }));
+              return _context2.abrupt('return', res.status(400).send({ status: 400, 'error': 'Please enter a valid email address' }));
 
             case 4:
               text = 'SELECT * FROM users WHERE email = $1';
@@ -125,7 +134,7 @@ var User = {
                 break;
               }
 
-              return _context2.abrupt('return', res.status(400).send({ 'message': 'The credentials you provided is incorrect' }));
+              return _context2.abrupt('return', res.status(400).send({ status: 400, 'error': 'The credentials you provided is incorrect' }));
 
             case 12:
               if (_helper2.default.comparePassword(rows[0].password, req.body.password)) {
@@ -133,7 +142,7 @@ var User = {
                 break;
               }
 
-              return _context2.abrupt('return', res.status(400).send({ 'message': 'The credentials you provided is incorrect' }));
+              return _context2.abrupt('return', res.status(400).send({ status: 400, 'error': 'The credentials you provided is incorrect' }));
 
             case 14:
               token = _helper2.default.generateToken(rows[0].id);

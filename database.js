@@ -24,7 +24,7 @@ const createTables = () => {
       offices(
         id UUID PRIMARY KEY,
         name VARCHAR(128) NOT NULL,
-        type VARCHAR(128) NOT NULL
+        type VARCHAR(128) UNIQUE NOT NULL
       );
       CREATE TABLE IF NOT EXISTS
         users(
@@ -74,3 +74,4 @@ module.exports = {
 };
 
 require('make-runnable');
+console.log("Database Init")

@@ -12,6 +12,10 @@ var _query = require('../models/query');
 
 var _query2 = _interopRequireDefault(_query);
 
+var _helper = require('../helpers/helper');
+
+var _helper2 = _interopRequireDefault(_helper);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -25,13 +29,29 @@ var Party = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              if (!(!req.body.name || !req.body.address || !req.body.logo)) {
+                _context.next = 2;
+                break;
+              }
+
+              return _context.abrupt('return', res.status(400).send({ status: 400, 'Error': 'All fields are required' }));
+
+            case 2:
+              if (!(!isNaN(req.body.name) || req.body.name.length < 1)) {
+                _context.next = 4;
+                break;
+              }
+
+              return _context.abrupt('return', res.status(400).send({ status: 400, 'Error': 'Please enter valid details' }));
+
+            case 4:
               text = 'INSERT INTO\n      parties(id, name, address, logo)\n      VALUES($1, $2, $3, $4)\n      returning *';
-              values = [(0, _v2.default)(), req.body.name, req.body.hqAddress, req.body.logoUrl];
-              _context.prev = 2;
-              _context.next = 5;
+              values = [(0, _v2.default)(), _helper2.default.trimString(req.body.name), _helper2.default.trimString(req.body.hqAddress), _helper2.default.trimString(req.body.logoUrl)];
+              _context.prev = 6;
+              _context.next = 9;
               return _query2.default.query(text, values);
 
-            case 5:
+            case 9:
               _ref2 = _context.sent;
               rows = _ref2.rows;
               return _context.abrupt('return', res.status(201).send({
@@ -39,17 +59,17 @@ var Party = {
                 data: [rows[0]]
               }));
 
-            case 10:
-              _context.prev = 10;
-              _context.t0 = _context['catch'](2);
-              return _context.abrupt('return', res.status(400).send({ status: 400, error: "Bad Request" }));
+            case 14:
+              _context.prev = 14;
+              _context.t0 = _context['catch'](6);
+              return _context.abrupt('return', res.status(400).send({ status: 400, error: "Bad Request, Cannot create Party" }));
 
-            case 13:
+            case 17:
             case 'end':
               return _context.stop();
           }
         }
-      }, _callee, this, [[2, 10]]);
+      }, _callee, this, [[6, 14]]);
     }));
 
     function createParty(_x, _x2) {
@@ -83,7 +103,7 @@ var Party = {
             case 10:
               _context2.prev = 10;
               _context2.t0 = _context2['catch'](1);
-              return _context2.abrupt('return', res.status(400).send({ status: 400, error: "Bad Request" }));
+              return _context2.abrupt('return', res.status(400).send({ status: 400, error: "Bad Request, cannot get parties" }));
 
             case 13:
             case 'end':
@@ -121,7 +141,7 @@ var Party = {
                 break;
               }
 
-              return _context3.abrupt('return', res.status(404).send({ status: 404, 'error': 'party not found' }));
+              return _context3.abrupt('return', res.status(404).send({ status: 404, 'error': 'Party not found' }));
 
             case 8:
               return _context3.abrupt('return', res.status(200).send({
@@ -171,7 +191,7 @@ var Party = {
                 break;
               }
 
-              return _context4.abrupt('return', res.status(404).send({ 'message': 'party not found' }));
+              return _context4.abrupt('return', res.status(404).send({ status: 404, 'message': 'Party not found' }));
 
             case 9:
               values = [req.body.name || rows[0].name, req.body.address || rows[0].address, req.body.logo || rows[0].logo, req.params.id];

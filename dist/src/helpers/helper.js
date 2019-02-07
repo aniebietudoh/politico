@@ -25,6 +25,15 @@ var Helper = {
     return (/\S+@\S+\.\S+/.test(email)
     );
   },
+  trimString: function trimString(string) {
+    return string.replace(/\s+/g, '');
+  },
+  makeInteger: function makeInteger(arg) {
+    if (parseInt(arg) !== NaN) {
+      return arg;
+    }
+    return false;
+  },
   generateToken: function generateToken(id, isAdmin) {
     var token = _jsonwebtoken2.default.sign({
       userId: id,

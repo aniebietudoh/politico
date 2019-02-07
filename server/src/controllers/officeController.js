@@ -1,16 +1,20 @@
 import uuidv4 from 'uuid/v4';
 import db from '../models/query';
+import Helper from '../helpers/helper';
 
 const Office = {
   async createOffice(req, res) {
+  if (!req.body.name || !req.body.type) {
+      return res.status(400).send({ status: 400, 'Error': 'Some details are missing'});
+    }
     const text = `INSERT INTO
       offices(id, name, type)
       VALUES($1, $2, $3)
       returning *`;
     const values = [
       uuidv4(),
-      req.body.name,
-      req.body.type
+      Helper.trimString(req.body.name),
+      Helper.trimString(req.body.type)
     ];
 
     try {
@@ -20,7 +24,7 @@ const Office = {
         data: [rows[0]]
       });
     } catch(error) {
-      return res.status(400).send({status: 400, error:"Bad Request"});
+      return res.status(400).send({status: 400, "error":"Bad Request"});
     }
   },
  async getAllOffice(req, res) {
@@ -32,7 +36,7 @@ const Office = {
         data: rows 
       });
     } catch(error) {
-      return res.status(400).send({status: 400, error:"Bad Request"});
+      return res.status(400).send({status: 400, "error":"Cannot get office"});
     }
   },
   async getOneOffice(req, res) {
@@ -40,7 +44,7 @@ const Office = {
     try {
       const { rows } = await db.query(text, [req.params.id]);
       if (!rows[0]) {
-        return res.status(404).send({'message': 'Office not found'});
+        return res.status(404).send({status: 404, 'message': 'Office not found'});
       }
       return res.status(200).send(rows[0]);
     } catch(error) {

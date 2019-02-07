@@ -54,26 +54,26 @@ var Auth = {
                 break;
               }
 
-              return _context.abrupt('return', res.status(400).send({ 'message': 'The token you provided is invalid' }));
+              return _context.abrupt('return', res.status(400).send({ status: 400, 'error': 'The token you provided is invalid' }));
 
             case 14:
               req.user = { id: decoded.userId };
-              req.role = { isAdmin: decoded.role };
+              // req.role = { isAdmin: decoded.role }
               next();
-              _context.next = 22;
+              _context.next = 21;
               break;
 
-            case 19:
-              _context.prev = 19;
+            case 18:
+              _context.prev = 18;
               _context.t0 = _context['catch'](3);
               return _context.abrupt('return', res.status(400).send(_context.t0));
 
-            case 22:
+            case 21:
             case 'end':
               return _context.stop();
           }
         }
-      }, _callee, this, [[3, 19]]);
+      }, _callee, this, [[3, 18]]);
     }));
 
     function verifyToken(_x, _x2, _x3) {

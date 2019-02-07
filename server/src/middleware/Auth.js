@@ -12,10 +12,10 @@ const Auth = {
       const text = 'SELECT * FROM users WHERE id = $1';
       const { rows } = await db.query(text, [decoded.userId]);
       if(!rows[0]) {
-        return res.status(400).send({ 'message': 'The token you provided is invalid' });
+        return res.status(400).send({ status: 400, 'error': 'The token you provided is invalid' });
       }
       req.user = { id: decoded.userId };
-      req.role = { isAdmin: decoded.role }
+     // req.role = { isAdmin: decoded.role }
       next();
     } catch(error) {
       return res.status(400).send(error);

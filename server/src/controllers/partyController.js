@@ -1,17 +1,25 @@
 import uuidv4 from 'uuid/v4';
 import db from '../models/query';
+import Helper from '../helpers/helper';
 
 const Party = {
   async createParty(req, res) {
+    if (!req.body.name || !req.body.address || !req.body.logo) {
+      return res.status(400).send({ status: 400, 'Error': 'All fields are required'});
+    }
+
+    if (!isNaN(req.body.name) || req.body.name.length < 1) {
+      return res.status(400).send({ status: 400, 'Error': 'Please enter valid details' });
+    }
     const text = `INSERT INTO
       parties(id, name, address, logo)
       VALUES($1, $2, $3, $4)
       returning *`;
     const values = [
       uuidv4(),
-      req.body.name,
-      req.body.hqAddress,
-      req.body.logoUrl,
+      Helper.trimString(req.body.name),
+      Helper.trimString(req.body.hqAddress),
+      Helper.trimString(req.body.logoUrl),
     ];
 
     try {
@@ -21,7 +29,7 @@ const Party = {
         data: [rows[0]]
       });
     } catch(error) {
-      return res.status(400).send({status: 400, error:"Bad Request"});
+      return res.status(400).send({status: 400, error:"Bad Request, Cannot create Party"});
     }
   },
  async getAllParty(req, res) {
@@ -33,7 +41,7 @@ const Party = {
         data: rows 
       });
     } catch(error) {
-      return res.status(400).send({status: 400, error:"Bad Request"});
+      return res.status(400).send({status: 400, error:"Bad Request, cannot get parties"});
     }
   },
   async getOneParty(req, res) {
@@ -41,7 +49,7 @@ const Party = {
     try {
       const { rows } = await db.query(text, [req.params.id]);
       if (!rows[0]) {
-        return res.status(404).send({status: 404, 'error': 'party not found'});
+        return res.status(404).send({status: 404, 'error': 'Party not found'});
       }
       return res.status(200).send({
         status: 200,
@@ -58,7 +66,7 @@ const Party = {
     try {
       const { rows } = await db.query(findOneQuery, [req.params.id]);
       if(!rows[0]) {
-        return res.status(404).send({'message': 'party not found'});
+        return res.status(404).send({status: 404, 'message': 'Party not found'});
       }
       const values = [
         req.body.name || rows[0].name,
