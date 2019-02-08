@@ -53,7 +53,7 @@ var User = {
               return _context.abrupt('return', res.status(400).send({ status: 400, 'Error': 'Please enter a valid phone number' }));
 
             case 6:
-              if (!(req.body.firstname || req.body.lastname || req.body.passportUrl || req.body.othername || req.body.email || req.body.password === " ")) {
+              if (!(req.body.email || req.body.password === " ")) {
                 _context.next = 8;
                 break;
               }
@@ -74,7 +74,7 @@ var User = {
               token = _helper2.default.generateToken(rows[0].id);
               return _context.abrupt('return', res.status(201).send({
                 status: 201,
-                data: [{ "token": token, "user": rows[0] }] }));
+                data: [{ /*"token": token,*/"user": rows[0] }] }));
 
             case 20:
               _context.prev = 20;

@@ -13,7 +13,7 @@ const User = {
     if (isNaN(req.body.phoneNumber) || req.body.phoneNumber.length < 8) {
       return res.status(400).send({ status: 400, 'Error': 'Please enter a valid phone number' });
     }
-     if (req.body.firstname || req.body.lastname  || req.body.passportUrl || req.body.othername || req.body.email || req.body.password === " ") {
+     if (req.body.email || req.body.password === " ") {
       return res.status(400).send({ status: 400, 'Error': 'No field should be empty'});
     }
 
@@ -41,7 +41,7 @@ const User = {
       const token = Helper.generateToken(rows[0].id);
       return res.status(201).send({ 
       	status: 201, 
-        data: [{ "token": token, "user": rows[0] }] });
+        data: [{ /*"token": token,*/ "user": rows[0] }] });
     } catch(error) {
       if (error.routine === '_bt_check_unique') {
         return res.status(400).send({status: 400, 'error': 'User with that EMAIL already exist' })
