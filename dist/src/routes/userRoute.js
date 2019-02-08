@@ -15,6 +15,6 @@ var _userController2 = _interopRequireDefault(_userController);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (app) {
-	app.post('/api/v1/users', _userController2.default.create);
-	app.post('/api/v1/users/login', _userController2.default.login);
+	app.post('/auth/signup', _userController2.default.create);
+	app.post('/auth/login', _userController2.default.login);
 };
