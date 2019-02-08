@@ -32,7 +32,7 @@ var Auth = {
                 break;
               }
 
-              return _context.abrupt('return', res.status(400).send({ 'message': 'Token is not provided' }));
+              return _context.abrupt('return', res.status(400).send({ status: 401, 'error': 'You are not authorized to view this page' }));
 
             case 3:
               _context.prev = 3;

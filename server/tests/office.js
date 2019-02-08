@@ -1,9 +1,7 @@
-/*// Import the dependencies for testing
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import uuid from 'uuid';
 import app from '../server';
-//import PartyModel from '../src/objectsAPI/models/partyModel';
 
 // Configure chai
 chai.use(chaiHttp);
@@ -43,4 +41,3 @@ describe('Office', () => {
     });
   });
 });
-*/

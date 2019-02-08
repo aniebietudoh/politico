@@ -5,7 +5,7 @@ import Helper from '../helpers/helper';
 const User = {
   async create(req, res) {
     if (!req.body.firstname || !req.body.email || !req.body.password) {
-      return res.status(400).send({ status: 400, 'Error': 'Name or email is missing'});
+      return res.status(400).send({ status: 400, 'Error': 'Details are missing'});
     }
     if (!Helper.isValidEmail(req.body.email)) {
       return res.status(400).send({ status: 400, 'Error': 'Please enter a valid email address' });
@@ -13,7 +13,12 @@ const User = {
     if (isNaN(req.body.phoneNumber) || req.body.phoneNumber.length < 8) {
       return res.status(400).send({ status: 400, 'Error': 'Please enter a valid phone number' });
     }
-    const hashPassword = Helper.hashPassword(req.body.password);
+     if (req.body.firstname || req.body.lastname  || req.body.passportUrl || req.body.othername || req.body.email || req.body.password === " ") {
+      return res.status(400).send({ status: 400, 'Error': 'No field should be empty'});
+    }
+
+
+    const hashPassword = Helper.trimString(Helper.hashPassword(req.body.password));
 
     const createQuery = `INSERT INTO
       users(id, firstname, lastname, othername, email, phoneNumber, passportUrl, isAdmin, password)

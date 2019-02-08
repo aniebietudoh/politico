@@ -1,4 +1,3 @@
-/*// Import the dependencies for testing
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import uuid from 'uuid';
@@ -41,5 +40,3 @@ describe('Party', () => {
     });
   });
 });
-
-*/
