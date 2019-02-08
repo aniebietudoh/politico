@@ -13,9 +13,6 @@ const User = {
     if (isNaN(req.body.phoneNumber) || req.body.phoneNumber.length < 8) {
       return res.status(400).send({ status: 400, 'Error': 'Please enter a valid phone number' });
     }
-     if (req.body.email || req.body.password === " ") {
-      return res.status(400).send({ status: 400, 'Error': 'No field should be empty'});
-    }
 
 
     const hashPassword = Helper.trimString(Helper.hashPassword(req.body.password));

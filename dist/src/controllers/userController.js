@@ -53,22 +53,14 @@ var User = {
               return _context.abrupt('return', res.status(400).send({ status: 400, 'Error': 'Please enter a valid phone number' }));
 
             case 6:
-              if (!(req.body.email || req.body.password === " ")) {
-                _context.next = 8;
-                break;
-              }
-
-              return _context.abrupt('return', res.status(400).send({ status: 400, 'Error': 'No field should be empty' }));
-
-            case 8:
               hashPassword = _helper2.default.trimString(_helper2.default.hashPassword(req.body.password));
               createQuery = 'INSERT INTO\n      users(id, firstname, lastname, othername, email, phoneNumber, passportUrl, isAdmin, password)\n      VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)\n      returning *';
               values = [(0, _v2.default)(), _helper2.default.trimString(req.body.firstname), _helper2.default.trimString(req.body.lastname), _helper2.default.trimString(req.body.othername), req.body.email, _helper2.default.makeInteger(req.body.phoneNumber), req.body.passportUrl, false, hashPassword];
-              _context.prev = 11;
-              _context.next = 14;
+              _context.prev = 9;
+              _context.next = 12;
               return _query2.default.query(createQuery, values);
 
-            case 14:
+            case 12:
               _ref2 = _context.sent;
               rows = _ref2.rows;
               token = _helper2.default.generateToken(rows[0].id);
@@ -76,26 +68,26 @@ var User = {
                 status: 201,
                 data: [{ /*"token": token,*/"user": rows[0] }] }));
 
-            case 20:
-              _context.prev = 20;
-              _context.t0 = _context['catch'](11);
+            case 18:
+              _context.prev = 18;
+              _context.t0 = _context['catch'](9);
 
               if (!(_context.t0.routine === '_bt_check_unique')) {
-                _context.next = 24;
+                _context.next = 22;
                 break;
               }
 
               return _context.abrupt('return', res.status(400).send({ status: 400, 'error': 'User with that EMAIL already exist' }));
 
-            case 24:
+            case 22:
               return _context.abrupt('return', res.status(400).send(_context.t0));
 
-            case 25:
+            case 23:
             case 'end':
               return _context.stop();
           }
         }
-      }, _callee, this, [[11, 20]]);
+      }, _callee, this, [[9, 18]]);
     }));
 
     function create(_x, _x2) {

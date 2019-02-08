@@ -45,21 +45,13 @@ var Party = {
               return _context.abrupt('return', res.status(400).send({ status: 400, 'Error': 'Please enter valid details' }));
 
             case 4:
-              if (!(req.body.name || req.body.hqAddress === " ")) {
-                _context.next = 6;
-                break;
-              }
-
-              return _context.abrupt('return', res.status(400).send({ status: 400, 'Error': 'No field should be empty' }));
-
-            case 6:
               text = 'INSERT INTO\n      parties(id, name, address, logo)\n      VALUES($1, $2, $3, $4)\n      returning *';
               values = [(0, _v2.default)(), _helper2.default.trimString(req.body.name), _helper2.default.trimString(req.body.hqAddress), _helper2.default.trimString(req.body.logoUrl)];
-              _context.prev = 8;
-              _context.next = 11;
+              _context.prev = 6;
+              _context.next = 9;
               return _query2.default.query(text, values);
 
-            case 11:
+            case 9:
               _ref2 = _context.sent;
               rows = _ref2.rows;
               return _context.abrupt('return', res.status(201).send({
@@ -67,17 +59,17 @@ var Party = {
                 data: [rows[0]]
               }));
 
-            case 16:
-              _context.prev = 16;
-              _context.t0 = _context['catch'](8);
+            case 14:
+              _context.prev = 14;
+              _context.t0 = _context['catch'](6);
               return _context.abrupt('return', res.status(400).send({ status: 400, error: "Bad Request, Cannot create Party" }));
 
-            case 19:
+            case 17:
             case 'end':
               return _context.stop();
           }
         }
-      }, _callee, this, [[8, 16]]);
+      }, _callee, this, [[6, 14]]);
     }));
 
     function createParty(_x, _x2) {

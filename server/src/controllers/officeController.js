@@ -10,9 +10,6 @@ const Office = {
      if (!isNaN(req.body.name) || !isNaN(req.body.type) || req.body.name.length < 3 || req.body.type.length < 3  ) {
       return res.status(400).send({ status: 400, 'Error': 'Please enter valid details' });
     }
-     if (req.body.name || req.body.type === " ") {
-      return res.status(400).send({ status: 400, 'Error': 'No field should be empty'});
-    }
     const text = `INSERT INTO
       offices(id, name, type)
       VALUES($1, $2, $3)
