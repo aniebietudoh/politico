@@ -11,7 +11,7 @@ const Party = {
     if (!isNaN(req.body.name) || req.body.name.length < 1) {
       return res.status(400).send({ status: 400, 'Error': 'Please enter valid details' });
     }
-    if (req.body.name || req.body.hqAddress || req.body.logoUrl === " ") {
+    if (req.body.name || req.body.hqAddress === " ") {
       return res.status(400).send({ status: 400, 'Error': 'No field should be empty'});
     }
     const text = `INSERT INTO

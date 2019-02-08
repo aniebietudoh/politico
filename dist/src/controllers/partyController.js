@@ -45,7 +45,7 @@ var Party = {
               return _context.abrupt('return', res.status(400).send({ status: 400, 'Error': 'Please enter valid details' }));
 
             case 4:
-              if (!(req.body.name || req.body.hqAddress || req.body.logoUrl === " ")) {
+              if (!(req.body.name || req.body.hqAddress === " ")) {
                 _context.next = 6;
                 break;
               }
