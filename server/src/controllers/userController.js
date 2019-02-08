@@ -64,7 +64,9 @@ const User = {
         return res.status(400).send({ status: 400, 'error': 'The credentials you provided is incorrect' });
       }
       const token = Helper.generateToken(rows[0].id);
-      return res.status(200).header('x-auth-header', token).send({ status: 200, token });
+      return res.status(200).header('x-auth-header', token).send({ 
+        status: 200, 
+        data: [{ "token": token, "user": rows[0] }] });
     } catch(error) {
       return res.status(400).send(error)
     }

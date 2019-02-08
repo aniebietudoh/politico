@@ -146,7 +146,9 @@ var User = {
 
             case 14:
               token = _helper2.default.generateToken(rows[0].id);
-              return _context2.abrupt('return', res.status(200).header('x-auth-header', token).send({ status: 200, token: token }));
+              return _context2.abrupt('return', res.status(200).header('x-auth-header', token).send({
+                status: 200,
+                data: [{ "token": token, "user": rows[0] }] }));
 
             case 18:
               _context2.prev = 18;
